@@ -1,4 +1,6 @@
+import javax.management.remote.rmi._RMIConnection_Stub;
 import javax.swing.*;
+import javax.xml.transform.Result;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -6,51 +8,41 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashSet;
+import java.sql.*;
 
 /**
  * Created by rachelmann on 2/14/14.
  */
 public class Application {
 
-    public static void main(String[] args) throws IOException {
+        public static void main(String[] args) throws IOException {
+
+            Connection db = null;
+            String url = "jdbc:postgresql://mycsf-scrabble.c7mrgwzg9grn.us-west-2.rds.amazonaws.com:5432/dbCSF_Scrabble";
+            String username = "userTRS";
+            String password = "12345678";
+
+            GameDatabase gameDB =  new GameDatabase(url, username, password);
+            db = gameDB.connectToDb();
 
 //        Object tile = new Object();
 //        //Create a new board which tracks the values of each square
 //        Board board = new Board();
-        Dictionary dictionary = new Dictionary();
-        HashSet<String> scrabbleDictionary;
-        dictionary.setSCRABBLE_DICTIONARY();
-        scrabbleDictionary = dictionary.SCRABBLE_DICTIONARY;
-        String word = "Zyzzogeton";
-        word = word.toUpperCase();
-        checkWord(dictionary, word);
-    }
 
+//        Dictionary dictionary = new Dictionary();
+//        HashSet<String> scrabbleDictionary;
+//        dictionary.setSCRABBLE_DICTIONARY();
+//        scrabbleDictionary = dictionary.SCRABBLE_DICTIONARY;
+//        String word = "wordx";
+//        word = word.toUpperCase();
+//        dictionary.checkWord(dictionary, word);
 
-    public static Boolean checkWord(Dictionary dictionary, String word){
-
-        if(dictionary.SCRABBLE_DICTIONARY.contains(word)){
-            System.out.println("True");
-            return true;
-        } else {
-            System.out.println("False");
-            return false;
+//        User user = new User("rachelkm2", "rachelkm2@gmail.com");
+//        user.userExists(user, db);
+//        user.saveUser(user, db);
+//        user.printAllUsers(db);
         }
 
     }
 
-    public static String placeTile(int row, int column, Board board, Object tile){
 
-            String bonusValue = null;
-
-            if (board.squares[row][column] == null){
-                board.squares[0][0] = tile;
-                bonusValue = board.BOARD_VALUES[row][column];
-                return bonusValue;
-            }
-
-            return bonusValue;
-        }
-
-
-}

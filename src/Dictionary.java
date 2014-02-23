@@ -29,17 +29,25 @@ public class Dictionary {
             String line = null;
             while ((line = reader.readLine()) != null) {
                 line = line.toUpperCase();
-                System.out.println(line);
+//                System.out.println(line);
                 this.SCRABBLE_DICTIONARY.add(line);
             }
             reader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
+    public static Boolean checkWord(Dictionary dictionary, String word){
+
+        if(dictionary.SCRABBLE_DICTIONARY.contains(word)){
+            System.out.println("True");
+            return true;
+        } else {
+            System.out.println("False");
+            return false;
+        }
+    }
 
 
 }

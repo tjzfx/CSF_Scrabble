@@ -10,6 +10,19 @@ public class Board {
 
     }
 
+    public static String placeTile(int row, int column, Board board, Object tile){
+
+        String bonusValue = null;
+
+        if (board.squares[row][column] == null){
+            board.squares[row][column] = tile;
+            bonusValue = board.BOARD_VALUES[row][column];
+            return bonusValue;
+        }
+
+        return bonusValue;
+    }
+
     public static void createAndPlaceValues(){
 
         String tripleWord = "Triple Word";
