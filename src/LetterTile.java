@@ -3,6 +3,17 @@ public class LetterTile {
     private int pointValue;
     private int numInstances;
 
+    public LetterTile(String letter, int pointValue){
+        this.letter = letter;
+        this.pointValue = pointValue;
+        //this.numInstances = numInstances;
+    }
+
+    public String toString(){
+        String letterTileInfo = "Letter is " + this.getLetter() +  " and point val is " + this.getPointValue();
+        return letterTileInfo;
+    }
+
     public String getLetter() {
         return letter;
     }
