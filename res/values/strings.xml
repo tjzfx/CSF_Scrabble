@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ScrabbleCSF</string>
+    <string name="row_counter">asdf</string>
+    <string name="column_counter">asdf</string>
+    <string name="tile_tray">asdf</string>
+
+</resources>
