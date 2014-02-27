@@ -37,8 +37,8 @@ public class TilePool {
     }
 
     public LetterTile getRandomTile(){
-        Random random = new Random(this.tilePool.size() - 1);
-        int randomIndex = random.nextInt() + 1;
+        Random random = new Random();
+        int randomIndex = random.nextInt(this.tilePool.size() - 1);
         LetterTile newTile = tilePool.get(randomIndex);
         tilePool.remove(newTile);
         return newTile;

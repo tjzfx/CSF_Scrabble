@@ -2,6 +2,9 @@ public class LetterTile {
     private String letter;
     private int pointValue;
     private int numInstances;
+    private int tileRow;
+    private int tileCol;
+    private String bonusValue;
 
     public LetterTile(String letter, int pointValue){
         this.letter = letter;
@@ -36,6 +39,30 @@ public class LetterTile {
 
     public void setNumInstances(int numInstances) {
         this.numInstances = numInstances;
+    }
+
+    public int getTileRow() {
+        return tileRow;
+    }
+
+    public void setTileRow(int tileRow) {
+        this.tileRow = tileRow;
+    }
+
+    public int getTileCol() {
+        return tileCol;
+    }
+
+    public void setTileCol(int tileCol) {
+        this.tileCol = tileCol;
+    }
+
+    public String getBonusValue() {
+        return bonusValue;
+    }
+
+    public void setBonusValue(String bonusValue) {
+        this.bonusValue = bonusValue;
     }
 }
 

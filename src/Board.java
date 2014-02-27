@@ -3,24 +3,19 @@
  */
 public class Board {
     public static String[][] BOARD_VALUES = new String[15][15];
-    public Object [][] squares = new Object[15][15];
+    public LetterTile [][] placedTiles = new LetterTile[15][15];
 
     public Board(){
         createAndPlaceValues();
 
     }
 
-    public static String placeTile(int row, int column, Board board, Object tile){
+    public LetterTile getPlacedTiles(int row, int col) {
+        return placedTiles[row][col];
+    }
 
-        String bonusValue = null;
-
-        if (board.squares[row][column] == null){
-            board.squares[row][column] = tile;
-            bonusValue = board.BOARD_VALUES[row][column];
-            return bonusValue;
-        }
-
-        return bonusValue;
+    public void setPlacedTiles(int row, int col, LetterTile tile) {
+        this.placedTiles[row][col] = tile;
     }
 
     public static void createAndPlaceValues(){
