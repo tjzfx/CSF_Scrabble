@@ -10,8 +10,8 @@ public class TileTray {
     public TileTray(TilePool tilePool){
         for (int i = 0; i < 7; i++){
             LetterTile newTile = tilePool.getRandomTile();
-            //tilePool.remove();
             tileTray.add(newTile);
+            //tilePool.remove();
         }
     }
 
@@ -56,6 +56,12 @@ public class TileTray {
             }
         return false;
     }
+
+    public ArrayList<LetterTile> getTileTray() {
+
+        return tileTray;
+    }
+
 
 }
 

@@ -8,6 +8,7 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.sql.*;
 
@@ -16,17 +17,61 @@ import java.sql.*;
  */
 public class Application {
 
+
         public static void main(String[] args) throws IOException {
 
             Boolean gameOver = false;
 
-            setupGame();
+            //Setup the game
+            int numPlayers = 2;
+            Game game = new Game(numPlayers);
+            game.setupGame();
 
-            while (gameOver == )
+            //Create players and add to game
+            String[] playerNames = new String[numPlayers];
+            Player[] players = new Player[numPlayers];
+            String playerName;
+            Player player;
+
+            for (int i = 0; i < numPlayers; i++){
+                //Add each player to the game
+                playerName = playerNames[i];
+                player = new Player(game, playerName, i);
+                //Give each player a tile tray
+                TileTray tileTray = new TileTray(game.getTilePool());
+                player.setPlayerTray(tileTray);
+                //Loop through each tile in the tile tray and remove the tile from the tilePool
+                for (int j = 0; j < tileTray.getTileTray().size(); j++){
+                    game.getTilePool().removeTile(tileTray.getTileTray().get(j));
+                }
+            }
+
+            Move move;
+
+            //Play the game
+            while (gameOver == false){
+                for (int i = 0; i < players.length; i ++){
+                    player = players[i];
+                    //TODO: WHERE DOES THIS GET SET?
+                    ArrayList<LetterTile> playedTiles = new ArrayList<LetterTile>();
+                    move = new Move(player, playedTiles, game.getBoard());
+                    move.placeTiles(player.getPlayerTray());
+                    move.removeAndReplaceTiles(player.getPlayerTray(), game.getTilePool());
+                    move.checkTileIsland();
+                    move.checkWordIsland();
+                    move.checkInLine();
+                    move.findWords();
+                    move.calculate();
+                    //Check at end of each move if game is over?
+                }
+
+
+            }
 
 
             //Player 1 submits a word
             //Check to make sure word covers middle square
+
             //Call the move class (pass player and array of inputs)
             // if we ever come to an invalid boolean, return false and end player turn and remove tiles from board; place back in their tray
             // place the new tiles onto the board according to row, col
@@ -63,60 +108,6 @@ public class Application {
 //        user.printAllUsers(db);
         }
 
-    public static void setupGame() throws IOException {
-
-        //Users sign up
-        //One user creates a game and becomes player one
-        //Additional users join and become players
-
-        //TODO: RM Updated
-        Connection db = null;
-        String url = "jdbc:postgresql://mycsf-scrabble.c7mrgwzg9grn.us-west-2.rds.amazonaws.com:5432/dbCSF_Scrabble";
-        String username = "userTRS";
-        String password = "12345678";
-        Path dictionaryPath = Paths.get("/Users/rachelmann/CSF/FinalProject/words");
-
-        GameDatabase gameDB =  new GameDatabase(url, username, password);
-        db = gameDB.connectToDb();
-
-        //Create a new board which tracks the values of each square
-        Board board = new Board();
-
-        //Create a new dictionary
-        Dictionary dictionary = new Dictionary();
-        HashSet<String> scrabbleDictionary;
-        dictionary.setSCRABBLE_DICTIONARY(dictionaryPath);
-        scrabbleDictionary = dictionary.SCRABBLE_DICTIONARY;
-
-        //Create and save new users (somewhere)
-        User user1 = new User("RachelKM2", "rachelkm2@gmail.com");
-        User user2 = new User("ShirleyB", "shirleylberry@gmail.com");
-        user1.saveUser(user1, db);
-        user2.saveUser(user2, db);
-
-        //Add # players (somewhere)
-        int numPlayers = 2;
-
-        //create a new game
-        Game game = new Game(numPlayers);
-
-        //Create players and add to game
-        Player player1 = new Player(game, user1, 1);
-        Player player2 = new Player(game, user2, 2);
-
-        //Create a tile pool //TODO: Check with Shirley to make sure this is how it works
-        File letterfreqs = new File("letterFrequencies.txt");
-        TilePool tilePool = new TilePool(letterfreqs);
-
-        //Give each player 7 tiles
-        TileTray tileTray1 = new TileTray(tilePool);
-        player1.setPlayerTray(tileTray1);
-
-        TileTray tileTray2 = new TileTray(tilePool);
-        player2.setPlayerTray(tileTray2);
-
-
-    }
 
     }
 
