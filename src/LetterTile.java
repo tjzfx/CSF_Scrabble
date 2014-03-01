@@ -68,11 +68,11 @@ public class LetterTile {
         this.bonusValue = bonusValue;
     }
 
-    public Boolean getCommitted() {
+    public boolean isCommitted() {
         return committed;
     }
 
-    public void setCommitted(Boolean committed) {
+    public void setCommitted(boolean committed) {
         this.committed = committed;
     }
 
