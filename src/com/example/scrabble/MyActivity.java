@@ -2,7 +2,6 @@ package com.example.scrabble;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -21,6 +20,4 @@ TextView text;
         setContentView(R.layout.main);
     }
 
-    View my_row = findViewById(R.id.textView10);
-
-        }
+}
