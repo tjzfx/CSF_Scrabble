@@ -10,8 +10,8 @@ public class TileTray {
     public TileTray(TilePool tilePool){
         for (int i = 0; i < 7; i++){
             LetterTile newTile = tilePool.getRandomTile();
-            tileTray.add(newTile);
             //tilePool.remove();
+            tileTray.add(newTile);
         }
     }
 
@@ -57,11 +57,14 @@ public class TileTray {
         return false;
     }
 
-    public ArrayList<LetterTile> getTileTray() {
-
-        return tileTray;
+    public LetterTile playTile(String s){
+        for (int i = 0; i < tileTray.size(); i++){
+            if(tileTray.get(i).getLetter() == s){
+                return tileTray.get(i);
+            }
+        }
+        return tileTray.get(0);
     }
-
 
 }
 

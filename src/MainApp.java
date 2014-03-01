@@ -48,12 +48,18 @@ public class MainApp {
             LetterTile letterTile = tilePool.tilePool.get(x);
             System.out.println(letterTile.toString());
         }
+
         ArrayList<LetterTile> playedTiles = new ArrayList<LetterTile>();
         for(int x = 0; x < 4; x++){
-            playedTiles.add(player1tray.playTile("R"));
+            System.out.println("What tile to play?");
+            String playLetter = scanner.next();
+            playedTiles.add(player1tray.playTile(playLetter));
         }
 
-        Move move = new Move(playedTiles);
+        Move move = new Move(player1, playedTiles);
+        for(int i = 0; i < playedTiles.size(); i++){
+            board.setPlacedTiles(i, i, playedTiles.get(i));
+        }
         System.out.print(board.toString());
     }
 }

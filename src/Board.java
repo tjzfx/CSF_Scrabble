@@ -93,11 +93,19 @@ public class Board {
         String boardString = "";
         StringBuilder sb = new StringBuilder();
         for(int i = 0; i < 15; i++){
-            System.out.print(placedTiles[i][0]);
+            System.out.println("");
+            for(int j = 0; j < 15; j++){
+                if(placedTiles[i][j] != null){
+                    System.out.print(placedTiles[i][j].getLetter());
+                }
+                else{
+                    System.out.print(placedTiles[i][j]);
+                }
+            }
         }
-        for(int i = 0; i < 15; i++){
-            System.out.print(placedTiles[0][i]);
-        }
+//        for(int i = 0; i < 15; i++){
+//            System.out.print(placedTiles[i][i].getLetter());
+//        }
         return boardString;
     }
 }

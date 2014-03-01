@@ -3,14 +3,13 @@
  */
 public class Player {
 
+    //TODO: RM UPDATED
     private int playerScore;
     private int playerNumber;
-    private String playerName;
     private TileTray playerTray;
 
-    public Player(Game game, String playerName, int playerNumber){
+    public Player(Game game, int playerNumber){
         this.playerNumber = playerNumber;
-        this.playerName = playerName;
         this.playerScore = 0;
     }
 
