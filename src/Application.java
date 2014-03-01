@@ -18,7 +18,12 @@ public class Application {
 
         public static void main(String[] args) throws IOException {
 
+            Boolean gameOver = false;
+
             setupGame();
+
+            while (gameOver == )
+
 
             //Player 1 submits a word
             //Check to make sure word covers middle square
