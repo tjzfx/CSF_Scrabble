@@ -13,7 +13,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:clickable="false"
             android:columnOrderPreserved="false" android:useDefaultMargins="true" android:rowCount="16"
-            android:columnCount="16" android:textAlignment="center" android:layout_gravity="center_horizontal">
+            android:columnCount="16" android:textAlignment="center" android:layout_gravity="center_horizontal"
+            android:background="@drawable/wsc_board1">
         <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -1403,6 +1404,6 @@
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText4" android:hint="wprd bank"/>
+            android:id="@+id/editText4" android:hint="word bank"/>
 </LinearLayout>
 
