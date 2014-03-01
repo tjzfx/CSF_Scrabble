@@ -18,9 +18,9 @@ public class Dictionary {
     public Dictionary(){
     }
 
-    public void setSCRABBLE_DICTIONARY() throws IOException {
+    //TODO: RM UPDATED (ADDED Path to parameters and moved path variable to application class
+    public void setSCRABBLE_DICTIONARY(Path path) throws IOException {
 
-        Path path = Paths.get("/Users/rachelmann/CSF/FinalProject/words");
         Charset charset = Charset.forName("US-ASCII");
 
         try {

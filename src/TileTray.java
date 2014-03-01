@@ -30,5 +30,34 @@ public class TileTray {
         String tileTrayText = tileTray.toString();
         return tileTrayText;
     }
+
+    //TODO: RM Added
+    public void addTile(LetterTile newTile){
+        tileTray.add(newTile);
+    }
+
+    //TODO: RM Added
+    public void removeTile(LetterTile tile){
+
+        for (int i = 0; i < tileTray.size(); i++)
+            if (tileTray.get(i) == tile){
+                tileTray.remove(i);
+                //Does "return" exit out of the loop?  Don't want to keep looping through
+                return;
+            }
+    }
+
+    //TODO: RM Added
+    public Boolean checkTileExists(LetterTile tile){
+
+        for (int i = 0; i < tileTray.size(); i++)
+            if (tileTray.get(i) == tile){
+                return true;
+            }
+        return false;
+    }
+
 }
+
+
 

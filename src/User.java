@@ -5,8 +5,10 @@ import java.sql.*;
  */
 public class User {
 
-    public String userName;
-    public String userEmail;
+    //TODO: RM Updated
+    private String userName;
+    private String userEmail;
+
 
     public User(String userName, String userEmail){
         this.userName = userName;

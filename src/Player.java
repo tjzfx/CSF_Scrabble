@@ -3,9 +3,10 @@
  */
 public class Player {
 
-    public int playerScore;
-    public int playerNumber;
-    public TileTray playerTray;
+    //TODO: RM UPDATED
+    private int playerScore;
+    private int playerNumber;
+    private TileTray playerTray;
 
     public Player(Game game, User user, int playerNumber){
         this.playerNumber = playerNumber;

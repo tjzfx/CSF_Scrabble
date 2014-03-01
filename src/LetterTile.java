@@ -6,6 +6,9 @@ public class LetterTile {
     private int tileCol;
     private String bonusValue;
 
+
+    private Boolean committed;
+
     public LetterTile(String letter, int pointValue){
         this.letter = letter;
         this.pointValue = pointValue;
@@ -64,6 +67,15 @@ public class LetterTile {
     public void setBonusValue(String bonusValue) {
         this.bonusValue = bonusValue;
     }
+
+    public Boolean getCommitted() {
+        return committed;
+    }
+
+    public void setCommitted(Boolean committed) {
+        this.committed = committed;
+    }
+
 }
 
 // point value, and num instances of each letter are determined by the txt file
