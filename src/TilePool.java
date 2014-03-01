@@ -11,7 +11,7 @@ public class TilePool {
 
     public TilePool(File letterFreqs){
         try{
-            File letterfreqs = new File("letterFrequencies.txt");
+            //File letterfreqs = new File("letterFrequencies.txt");
             BufferedReader letterReader = new BufferedReader(new FileReader(letterFreqs));
             String line;
             while ((line = letterReader.readLine()) != null) {

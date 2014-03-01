@@ -87,6 +87,17 @@ public class Board {
         BOARD_VALUES[14][11] = doubleLetter;
         BOARD_VALUES[14][14] = tripleWord;
     }
-    
 
+    @Override
+    public String toString(){
+        String boardString = "";
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < 15; i++){
+            System.out.print(placedTiles[i][0]);
+        }
+        for(int i = 0; i < 15; i++){
+            System.out.print(placedTiles[0][i]);
+        }
+        return boardString;
+    }
 }
