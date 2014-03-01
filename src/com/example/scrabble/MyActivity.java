@@ -22,7 +22,7 @@ public class MyActivity extends Activity {
         setContentView(R.layout.main);
 
     mButton = (Button)findViewById(R.id.button);
-    mEdit   = (EditText)findViewById(R.id.textView10);
+    mEdit   = (EditText)findViewById(R.id.textView169);
 
     mButton.setOnClickListener(
             new View.OnClickListener()
@@ -30,6 +30,8 @@ public class MyActivity extends Activity {
         public void onClick(View view)
         {
             Log.v("EditText", mEdit.getText().toString());
+
         }
     });
-}}
+    }
+}

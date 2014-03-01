@@ -1,13 +1,8 @@
-import java.io.*;
-import java.nio.ByteBuffer;
-import java.nio.channels.SeekableByteChannel;
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.*;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Scanner;
 
 import static java.nio.file.StandardOpenOption.*;
 
@@ -20,7 +15,7 @@ public class Dictionary {
 
     public void setSCRABBLE_DICTIONARY() throws IOException {
 
-        Path path = Paths.get("/Users/rachelmann/CSF/FinalProject/words");
+        Path path = Paths.get("/Users/thomas.zoltner/src/scrabble/words");
         Charset charset = Charset.forName("US-ASCII");
 
         try {
