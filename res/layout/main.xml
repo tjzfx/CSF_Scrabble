@@ -1378,15 +1378,17 @@
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Button"
+            android:text="Submit Letter"
             android:id="@+id/button" android:layout_gravity="center_horizontal"/>
+    <Button style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:text="Submit Word" android:id="@+id/button2"
+            android:layout_gravity="center_horizontal"/>
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:text="Name"
             android:ems="10"
-            android:id="@+id/editText" android:hint="Player 1"/>
+            android:id="@+id/editText" android:hint="Player 1 name"/>
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -1396,9 +1398,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:text="Name"
             android:ems="10"
-            android:id="@+id/editText2" android:layout_gravity="center_horizontal"/>
+            android:id="@+id/editText2" android:layout_gravity="center_horizontal" android:hint="Player 2 name"/>
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
