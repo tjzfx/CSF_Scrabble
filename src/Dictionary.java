@@ -18,7 +18,6 @@ public class Dictionary {
     public Dictionary(){
     }
 
-    //TODO: RM UPDATED (ADDED Path to parameters and moved path variable to application class
     public void setSCRABBLE_DICTIONARY(Path path) throws IOException {
 
         Charset charset = Charset.forName("US-ASCII");

@@ -3,13 +3,15 @@
  */
 public class Player {
 
-    //TODO: RM UPDATED
+
     private int playerScore;
     private int playerNumber;
+    private String playerName;
     private TileTray playerTray;
 
-    public Player(Game game, int playerNumber){
+    public Player(Game game, String playerName, int playerNumber){
         this.playerNumber = playerNumber;
+        this.playerName = playerName;
         this.playerScore = 0;
     }
 
@@ -18,7 +20,7 @@ public class Player {
         return playerScore;
     }
 
-    public void setPlayerScore(int points, int playerScore) {
+    public void setPlayerScore(int points) {
         this.playerScore = playerScore + points;
     }
 
@@ -28,6 +30,14 @@ public class Player {
 
     public void setPlayerTray(TileTray playerTray) {
         this.playerTray = playerTray;
+    }
+
+    public int getPlayerNumber() {
+        return playerNumber;
+    }
+
+    public String getPlayerName() {
+        return playerName;
     }
 
 

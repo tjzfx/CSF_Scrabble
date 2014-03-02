@@ -2,20 +2,21 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Move {
-    //ArrayList<LetterTile> playedTiles = new ArrayList<LetterTile>();
-    private boolean invalidPlay = false;
+    private Player player;
+    ArrayList<LetterTile> playedTiles = new ArrayList<LetterTile>();
+    private boolean validPlay = true;
     Board board;
-
-    //TODO: RM ADDED
     private String tileDirection = "";
+    ArrayList<LinkedList<LetterTile>> words;
 
-    public Move(Player player, ArrayList<LetterTile> playedTiles){
-        // check if more than one tile in the arraylist - don't need checks contig and direc
-        // if > 1, check direc
+    public Move(Player player, ArrayList<LetterTile> playedTiles, Board board){
+        this.board = board;
+        this.playedTiles = playedTiles;
+        this.player = player;
     }
 
-    //TODO: RM ADDED
-    public void placeTiles(TileTray tileTray, Board board, ArrayList<LetterTile> playedTiles){
+
+    public void placeTiles(TileTray tileTray){
 
         Boolean tileExists;
         int row;
@@ -48,8 +49,23 @@ public class Move {
 
     }
 
-    //TODO: RM ADDED
-    public void removeAndReplaceTiles(TileTray tileTray, TilePool tilePool, ArrayList<LetterTile> playedTiles){
+    public void removeTilesFromBoard(){
+        for (int i = 0; i < playedTiles.size(); i++){
+            int row = playedTiles.get(i).getTileRow();
+            int col = playedTiles.get(i).getTileCol();
+            board.placedTiles[row][col] = null;
+        }
+    }
+
+    public void commitTilesToBoard(){
+        for (int i = 0; i < playedTiles.size(); i++){
+            int row = playedTiles.get(i).getTileRow();
+            int col = playedTiles.get(i).getTileCol();
+            board.placedTiles[row][col] = playedTiles.get(i);
+        }
+    }
+
+    public void removeAndReplaceTiles(TileTray tileTray, TilePool tilePool){
 
         int row;
         int col;
@@ -80,8 +96,7 @@ public class Move {
         return isIsland;
     }
 
-    //Rachel
-    public boolean checkInLine(ArrayList<LetterTile> playedTiles){
+    public boolean checkInLine(){
 
         boolean isInLine = false;
         int rowOne = -1;
@@ -124,7 +139,7 @@ public class Move {
     }
 
     //Shirley
-    public ArrayList<LinkedList<LetterTile>> findWords(String direction, ArrayList<LetterTile> playedTiles){
+    public ArrayList<LinkedList<LetterTile>> findWords(){
         //StringBuilder sb = new StringBuilder();
         ArrayList<LinkedList<LetterTile>> allWords = new ArrayList<LinkedList<LetterTile>>();
         //ArrayList<String> allWords = new ArrayList<String>();
@@ -164,42 +179,50 @@ public class Move {
     }
 
     //Rachel
-    public int calculate(LinkedList<LetterTile>[] words){
-
-        //TODO: findWords should add words to an Array of Linked Lists of LetterTiles
-        //        int i; //number of words
-        //        LinkedList<LetterTile>[] words = new LinkedList[i];
+    public int calculate(){
 
         LetterTile tile;
-        int letterPoints = 0;
+        int tilePoints = 0;
         int totalLetterPoints = 0;
-        String bonusPoints;
+        String bonusValue;
         int wordPoints;
-        int movePoints;
+        int movePoints = 0;
+        Boolean committed;
+        int wordMultiplier;
 
-        //Loop through each LinkedList (word) in the Array
-        for (int i = 0; i < words.length; i++){
-            //Traverse through each LinkedList (word) in the Array to get the points value of each letter
-            for(int j = 0; j < words[i].size(); j++){
-                tile = words[i].get(j);
-                letterPoints = tile.getPointValue();
+        for (int i = 0; i < words.size(); i++){
+            LinkedList<LetterTile> word = words.get(i);
+            wordMultiplier = 0;
+            for(int j = 0; j < word.size(); j++){
+                tile = word.get(j);
+                tilePoints = tile.getPointValue();
+                bonusValue = tile.getBonusValue();
+                committed = tile.getCommitted();
 
-                if (tile.getCommitted() == false){
-                    bonusPoints = tile.getBonusValue();
-
-
+                if (committed == false){
+                    if (bonusValue.equals("Triple Word")){
+                        wordMultiplier = wordMultiplier + 3;
+                    } else if (bonusValue.equals("Double Word")){
+                        wordMultiplier = wordMultiplier + 2;
+                    } else if (bonusValue.equals("Triple Letter")){
+                        tilePoints = tilePoints * 3;
+                    } else if (bonusValue.equals("Double Letter")){
+                        tilePoints = tilePoints * 2;
+                    }
                 }
-
-                totalLetterPoints = totalLetterPoints + letterPoints;
-
+                totalLetterPoints = totalLetterPoints + tilePoints;
             }
+
+            if (wordMultiplier > 0){
+                wordPoints = totalLetterPoints * wordMultiplier;
+            } else {
+                wordPoints = totalLetterPoints;
+            }
+
+            movePoints = movePoints + wordPoints;
         }
-        int points = 0;
-        return points;
+
+        return movePoints;
     }
-
-    //while (words[i].iterator().hasNext())
-//    tile = words[i].getFirst();
-
 
 }
