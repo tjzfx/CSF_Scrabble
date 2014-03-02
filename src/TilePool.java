@@ -49,6 +49,17 @@ public class TilePool {
         return tilePoolText;
     }
 
+    public void removeTile(LetterTile tile){
+
+        for (int i = 0; i < tilePool.size(); i++)
+            if (tilePool.get(i) == tile){
+                tilePool.remove(i);
+                //Does "return" exit out of the loop?  Don't want to keep looping through
+                return;
+            }
+    }
+
+
 }
 
 // the starting state of the tile pool will be determined by the txt file

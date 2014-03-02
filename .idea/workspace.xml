@@ -79,25 +79,32 @@
       <file leaf-file-name="Game.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="13" selection-start="115" selection-end="115" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="405">
-              <folding />
+            <state line="13" column="13" selection-start="273" selection-end="273" vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="1350">
+              <folding>
+                <element signature="e#1808#1809#0" expanded="false" />
+                <element signature="e#1846#1847#0" expanded="false" />
+                <element signature="e#1887#1888#0" expanded="false" />
+                <element signature="e#1923#1924#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Application.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Application.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Application.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="90" column="35" selection-start="3708" selection-end="3708" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1770">
-              <folding />
+            <state line="5" column="63" selection-start="148" selection-end="148" vertical-scroll-proportion="-2.3360655" vertical-offset="915" max-vertical-offset="1350">
+              <folding>
+                <element signature="e#1535#1547#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TilePool.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="TilePool.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TilePool.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="81" selection-start="879" selection-end="879" vertical-scroll-proportion="0.4918033" vertical-offset="45" max-vertical-offset="795">
+            <state line="25" column="31" selection-start="959" selection-end="959" vertical-scroll-proportion="0.0" vertical-offset="210" max-vertical-offset="960">
               <folding />
             </state>
           </provider>
@@ -130,8 +137,10 @@
       <file leaf-file-name="Player.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="29" selection-start="303" selection-end="303" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
-              <folding />
+            <state line="14" column="29" selection-start="369" selection-end="369" vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="735">
+              <folding>
+                <element signature="method#setPlayerTray#0;class#Player#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -139,11 +148,9 @@
       <file leaf-file-name="Move.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Move.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="126" column="106" selection-start="3941" selection-end="3941" vertical-scroll-proportion="0.0" vertical-offset="1800" max-vertical-offset="3165">
+            <state line="141" column="57" selection-start="4304" selection-end="4304" vertical-scroll-proportion="0.0" vertical-offset="2025" max-vertical-offset="3510">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4060#4084#0" expanded="true" />
-                <element signature="e#4204#4216#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -179,14 +186,14 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/TilePool.java" />
         <option value="$PROJECT_DIR$/src/Player.java" />
         <option value="$PROJECT_DIR$/src/TileTray.java" />
-        <option value="$PROJECT_DIR$/src/Application.java" />
         <option value="$PROJECT_DIR$/src/Board.java" />
         <option value="$PROJECT_DIR$/src/LetterTile.java" />
         <option value="$PROJECT_DIR$/src/MainApp.java" />
         <option value="$PROJECT_DIR$/src/Move.java" />
+        <option value="$PROJECT_DIR$/src/TilePool.java" />
+        <option value="$PROJECT_DIR$/src/Application.java" />
       </list>
     </option>
   </component>
@@ -511,21 +518,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="29" selection-start="303" selection-end="303" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
-          <folding />
+        <state line="14" column="29" selection-start="369" selection-end="369" vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="735">
+          <folding>
+            <element signature="method#setPlayerTray#0;class#Player#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/src.zip!/java/util/ArrayList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="412" column="0" selection-start="15016" selection-end="15016" vertical-scroll-proportion="0.33123028" vertical-offset="5730" max-vertical-offset="17325">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Application.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="90" column="35" selection-start="3708" selection-end="3708" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1770">
           <folding />
         </state>
       </provider>
@@ -557,11 +559,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Move.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="126" column="106" selection-start="3941" selection-end="3941" vertical-scroll-proportion="0.0" vertical-offset="1800" max-vertical-offset="3165">
+        <state line="141" column="57" selection-start="4304" selection-end="4304" vertical-scroll-proportion="0.0" vertical-offset="2025" max-vertical-offset="3510">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4060#4084#0" expanded="true" />
-            <element signature="e#4204#4216#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -578,8 +578,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="13" selection-start="115" selection-end="115" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="405">
-          <folding />
+        <state line="13" column="13" selection-start="273" selection-end="273" vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="1350">
+          <folding>
+            <element signature="e#1808#1809#0" expanded="false" />
+            <element signature="e#1846#1847#0" expanded="false" />
+            <element signature="e#1887#1888#0" expanded="false" />
+            <element signature="e#1923#1924#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -598,8 +603,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/TilePool.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="81" selection-start="879" selection-end="879" vertical-scroll-proportion="0.4918033" vertical-offset="45" max-vertical-offset="795">
+        <state line="25" column="31" selection-start="959" selection-end="959" vertical-scroll-proportion="0.0" vertical-offset="210" max-vertical-offset="960">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Application.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="63" selection-start="148" selection-end="148" vertical-scroll-proportion="-2.3360655" vertical-offset="915" max-vertical-offset="1350">
+          <folding>
+            <element signature="e#1535#1547#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
