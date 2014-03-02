@@ -58,7 +58,7 @@ public class MainApp {
             LetterTile firstTile = tileTray1.getTileFromLetter(playLetter, tileTray1.tileTray);
             if(firstTile != null){
                 boolean endPlacements = false;
-                System.out.println("Playing tile " +  tileTray1.getTileFromLetter(playLetter, tileTray1.tileTray).toString());
+                System.out.println("Playing tile " +  firstTile);
                 System.out.println("What row?");
                 int row = scanner.nextInt();
                 firstTile.setTileRow(row);
@@ -69,27 +69,28 @@ public class MainApp {
                 System.out.println("What direction, right (r) or down (d)?");
                 String direct = scanner.next();
                 do {
-                    System.out.println("What tile would you like to play next?  Type 'end' when you're finished placing tiles.");
+                    System.out.println("What tile would you like to play next?  Type end when you're finished placing tiles.");
                     String nextLetter = scanner.next();
-                    if (nextLetter == "end"){
+                    System.out.println(nextLetter);
+                    if (nextLetter.equals("end")){
                         endPlacements = true;
                         break;
                     }
-                    else if (direct == "r"){
+                    else if (direct.equals("r")){
                         System.out.println("Okay, placing horizontally");
-                        LetterTile nextTile = tileTray1.getTileFromLetter(playLetter, tileTray1.tileTray);
-                        System.out.println("Playing tile " +  nextTile.toString());
-                        nextTile.setTileRow(firstTile.getTileRow() + 1);
-                        nextTile.setTileCol(firstTile.getTileCol());
+                        LetterTile nextTile = tileTray1.getTileFromLetter(nextLetter, tileTray1.tileTray);
+                        System.out.println("Playing tile " +  nextTile + " previous tile was" + firstTile);
+                        nextTile.setTileRow(firstTile.getTileRow());
+                        nextTile.setTileCol(firstTile.getTileCol() + 1);
                         playedTiles.add(nextTile);
                         firstTile = nextTile;
                     }
-                    else if (direct == "d"){
+                    else if (direct.equals("d")){
                         System.out.println("Okay, placing vertically");
-                        LetterTile nextTile = tileTray1.getTileFromLetter(playLetter, tileTray1.tileTray);
+                        LetterTile nextTile = tileTray1.getTileFromLetter(nextLetter, tileTray1.tileTray);
                         System.out.println("Playing tile " +  nextTile.toString());
-                        nextTile.setTileRow(firstTile.getTileRow());
-                        nextTile.setTileCol(firstTile.getTileCol() + 1);
+                        nextTile.setTileRow(firstTile.getTileRow() + 1);
+                        nextTile.setTileCol(firstTile.getTileCol());
                         playedTiles.add(nextTile);
                         firstTile = nextTile;
                     }
@@ -101,8 +102,9 @@ public class MainApp {
                 break;
             }
 //          // have player select what letter to play and where to start it DONE
-            // have player select next letters (one at a time?)
-            // place those letters on the board; if they encounter a space that isn't null, place it on col/row + 2
+            // have player select next letters (one at a time?) DONE
+            // place those letters on the board
+            // if they encounter a space that isn't null, place it on col/row + 2
             // validate word played, starting from first tile
             // validate words encountered, starting from first tile, checking left/right
             // if valid, remove those tiles from player's tile tray

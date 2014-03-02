@@ -99,7 +99,7 @@ public class Board {
                     System.out.print(placedTiles[i][j].getLetter());
                 }
                 else{
-                    System.out.print(placedTiles[i][j]);
+                    System.out.print(" - ");
                 }
             }
         }

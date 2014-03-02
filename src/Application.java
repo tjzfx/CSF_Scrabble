@@ -83,10 +83,10 @@ public class Application {
         scrabbleDictionary = dictionary.SCRABBLE_DICTIONARY;
 
         //Create and save new users (somewhere)
-        User user1 = new User("RachelKM2", "rachelkm2@gmail.com");
-        User user2 = new User("ShirleyB", "shirleylberry@gmail.com");
-        user1.saveUser(user1, db);
-        user2.saveUser(user2, db);
+        //User user1 = new User("RachelKM2", "rachelkm2@gmail.com");
+        //User user2 = new User("ShirleyB", "shirleylberry@gmail.com");
+        //user1.saveUser(user1, db);
+        //user2.saveUser(user2, db);
 
         //Add # players (somewhere)
         int numPlayers = 2;
