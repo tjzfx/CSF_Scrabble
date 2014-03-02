@@ -48,13 +48,24 @@ public class TileTray {
     }
 
     //TODO: RM Added
-    public Boolean checkTileExists(LetterTile tile){
-
+    public Boolean checkTileExists(String s){
         for (int i = 0; i < tileTray.size(); i++)
-            if (tileTray.get(i) == tile){
+            if (tileTray.get(i).getLetter() == s){
                 return true;
             }
+            else{
+                return false;
+            }
         return false;
+    }
+
+    public LetterTile getTileFromLetter(String s){
+        for(int i = 0; i < tileTray.size(); i++){
+            if (tileTray.get(i).getLetter() == s){
+                return tileTray.get(i);
+            }
+        }
+        return null;
     }
 
     public LetterTile playTile(String s){

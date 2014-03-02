@@ -44,21 +44,44 @@ public class MainApp {
         TileTray player1tray = new TileTray(tilePool);
         System.out.println("Let's start a new game.  Here is your tile tray:");
         System.out.println(player1tray.displayTileTray());
-        for(int x = 0; x < tilePool.tilePool.size(); x++){
-            LetterTile letterTile = tilePool.tilePool.get(x);
-            System.out.println(letterTile.toString());
-        }
+//        for(int x = 0; x < tilePool.tilePool.size(); x++){
+//            LetterTile letterTile = tilePool.tilePool.get(x);
+//            System.out.println(letterTile.toString());
+//        }
 
         ArrayList<LetterTile> playedTiles = new ArrayList<LetterTile>();
         for(int x = 0; x < 4; x++){
-            System.out.println("What tile to play?");
+            System.out.println("What tile to play first?");
             String playLetter = scanner.next();
-            playedTiles.add(player1tray.playTile(playLetter));
+            System.out.println("Playing tile " + tileTray1.getTileFromLetter(playLetter).toString());
+//            for(int i = 0; i < player1tray.tileTray.size(); i++){
+//                if(player1tray.tileTray.get(i).getLetter() == playLetter){
+//                    tileToPlay = player1tray.tileTray.get(i);
+//                }
+//          // have player select what letter to play and where to start it
+            // have player select next letters (one at a time?)
+            // place those letters on the board; if they encounter a space that isn't null, place it on col/row + 2
+            // validate word played, starting from first tile
+            // validate words encountered, starting from first tile, checking left/right
+            // if valid, remove those tiles from player's tile tray
+            System.out.println("What row?");
+            int row = scanner.nextInt();
+            System.out.println("What column?");
+            int col = scanner.nextInt();
+            int j = tileTray1.tileTray.indexOf(playLetter);
+            if(player1tray.checkTileExists(playLetter)){
+                //int j = tileTray1.tileTray.indexOf(playLetter);
+                System.out.println("Tile exists.");
+                playedTiles.add(player1tray.tileTray.get(j));
+            }
+            else{
+                break;
+            }
         }
 
         Move move = new Move(player1, playedTiles);
         for(int i = 0; i < playedTiles.size(); i++){
-            board.setPlacedTiles(i, i, playedTiles.get(i));
+            move.placeTiles(player1tray, board);
         }
         System.out.print(board.toString());
     }

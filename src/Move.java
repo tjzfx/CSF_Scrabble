@@ -25,10 +25,12 @@ public class Move {
 
         //Loop through the playedTiles to make sure they exist in player's tile tray
         for (int i = 0; i < playedTiles.size(); i++ ){
-            tile = playedTiles.get(i);
-            tileExists = tileTray.checkTileExists(tile);
+            String tileLetter = playedTiles.get(i).getLetter();
+            tileExists = tileTray.checkTileExists(tileLetter);
             if (tileExists = false){
                 //TODO: Exit out
+                System.out.println("You don't have that tile.");
+                break;
             }
         }
 

@@ -12,9 +12,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.sql.*;
 
-/**
- * Created by rachelmann on 2/14/14.
- */
 public class Application {
 
 
