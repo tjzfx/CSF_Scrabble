@@ -71,7 +71,6 @@ public class Application {
                         if (tilePoolSize < 1 && tileTraySize < 1){
                             gameOver = true;
                         }
-
                     }
                 }
             }

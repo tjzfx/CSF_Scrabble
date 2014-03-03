@@ -96,7 +96,7 @@ public class Board {
             System.out.println("");
             for(int j = 0; j < 15; j++){
                 if(placedTiles[i][j] != null){
-                    System.out.print(placedTiles[i][j].getLetter());
+                    System.out.print(" " + placedTiles[i][j].getLetter() + " ");
                 }
                 else{
                     System.out.print(" - ");

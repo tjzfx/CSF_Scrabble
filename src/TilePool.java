@@ -4,7 +4,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Arrays;
 
 public class TilePool {
     ArrayList<LetterTile> tilePool = new ArrayList<LetterTile>();
@@ -17,7 +16,7 @@ public class TilePool {
             while ((line = letterReader.readLine()) != null) {
                 String delims = "[ ]+";
                 String [] attrs = line.split(delims);
-                System.out.println(Arrays.toString(attrs));
+                //System.out.println(Arrays.toString(attrs));
                 for(int x = 0; x < Integer.valueOf(attrs[1]); x++){
                     tilePool.add(new LetterTile(attrs[0], Integer.valueOf(attrs[2])));
                  }
@@ -51,15 +50,14 @@ public class TilePool {
 
     public void removeTile(LetterTile tile){
 
-        for (int i = 0; i < tilePool.size(); i++)
+        for (int i = 0; i < tilePool.size(); i++){
             if (tilePool.get(i) == tile){
                 tilePool.remove(i);
                 //Does "return" exit out of the loop?  Don't want to keep looping through
                 return;
             }
+        }
     }
-
-
 }
 
 // the starting state of the tile pool will be determined by the txt file

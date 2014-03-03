@@ -2,14 +2,9 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.security.Timestamp;
-
-/**
- * Created by rachelmann on 2/23/14.
- */
-import java.sql.Connection;
 import java.util.Date;
 import java.util.HashSet;
+
 
 public class Game {
     private int numberPlayers;
@@ -33,14 +28,14 @@ public class Game {
         //Additional users join and become players
 
         //TODO: RM Updated
-        Connection db = null;
-        String url = "jdbc:postgresql://mycsf-scrabble.c7mrgwzg9grn.us-west-2.rds.amazonaws.com:5432/dbCSF_Scrabble";
-        String username = "userTRS";
-        String password = "12345678";
-        Path dictionaryPath = Paths.get("/Users/rachelmann/CSF/FinalProject/words");
+//        Connection db = null;
+//        String url = "jdbc:postgresql://mycsf-scrabble.c7mrgwzg9grn.us-west-2.rds.amazonaws.com:5432/dbCSF_Scrabble";
+//        String username = "userTRS";
+//        String password = "12345678";
+        Path dictionaryPath = Paths.get("/Users/ShirleyB/finalProject/ScrabbleTest/words");
 
-        GameDatabase gameDB =  new GameDatabase(url, username, password);
-        db = gameDB.connectToDb();
+//        GameDatabase gameDB =  new GameDatabase(url, username, password);
+//        db = gameDB.connectToDb();
 
         //Create a new board which tracks the values of each square
         board = new Board();

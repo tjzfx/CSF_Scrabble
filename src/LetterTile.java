@@ -14,31 +14,9 @@ public class LetterTile {
         this.pointValue = pointValue;
         //this.numInstances = numInstances;
     }
-//
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//
-//        LetterTile that = (LetterTile) o;
-//
-//        if (numInstances != that.numInstances) return false;
-//        if (pointValue != that.pointValue) return false;
-//        if (!letter.equals(that.letter)) return false;
-//
-//        return true;
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        int result = letter.hashCode();
-//        result = 31 * result + pointValue;
-//        result = 31 * result + numInstances;
-//        return result;
-//    }
 
     public String toString(){
-        String letterTileInfo = "Letter is " + this.getLetter() +  " and point val is " + this.getPointValue();
+        String letterTileInfo = this.getLetter() +  " worth " + this.getPointValue() + " point(s)";
         return letterTileInfo;
     }
 

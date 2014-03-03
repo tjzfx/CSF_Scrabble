@@ -2,8 +2,6 @@
  * Created by rachelmann on 2/23/14.
  */
 public class Player {
-
-
     private int playerScore;
     private int playerNumber;
     private String playerName;
@@ -40,5 +38,8 @@ public class Player {
         return playerName;
     }
 
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
 
 }

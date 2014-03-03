@@ -2,8 +2,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class TileTray {
-    private static int NUM_TILES = 7;
+    private final int NUM_TILES = 7;
     ArrayList<LetterTile> tileTray = new ArrayList<LetterTile>();
+
+    // constructor
+    public TileTray(TilePool tilePool){
+        for (int i = 0; i < NUM_TILES; i++){
+            LetterTile newTile = tilePool.getRandomTile();
+            //tilePool.remove();
+            this.tileTray.add(newTile);
+        }
+    }
 
     public ArrayList<LetterTile> getTileTray() {
         return tileTray;
@@ -11,15 +20,6 @@ public class TileTray {
 
     public void setTileTray(ArrayList<LetterTile> tileTray) {
         this.tileTray = tileTray;
-    }
-
-    // constructor
-    public TileTray(TilePool tilePool){
-        for (int i = 0; i < 7; i++){
-            LetterTile newTile = tilePool.getRandomTile();
-            //tilePool.remove();
-            tileTray.add(newTile);
-        }
     }
 
     public LetterTile getNewTile(TilePool tilePool){
