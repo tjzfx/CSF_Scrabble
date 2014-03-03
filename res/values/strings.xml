@@ -5,4 +5,9 @@
     <string name="column_counter">asdf</string>
     <string name="tile_tray">asdf</string>
 
+    <string name="turn_prompt">Choose a players turn</string>
+    <string-array name="player_turn">
+        <item>TURN - Player 1</item>
+        <item>TURN - Player 2</item>
+    </string-array>
 </resources>
