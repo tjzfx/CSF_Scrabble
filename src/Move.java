@@ -139,13 +139,13 @@ public class Move {
     }
 
     //Shirley
-    public ArrayList<LinkedList<LetterTile>> findWords(){
+    public ArrayList<String> findWords(){
         //StringBuilder sb = new StringBuilder();
-        ArrayList<LinkedList<LetterTile>> allWords = new ArrayList<LinkedList<LetterTile>>();
-        //ArrayList<String> allWords = new ArrayList<String>();
+        //ArrayList<LinkedList<LetterTile>> allWords = new ArrayList<LinkedList<LetterTile>>();
+        ArrayList<String> allWords = new ArrayList<String>();
         LinkedList<LetterTile> word = new LinkedList<LetterTile>();
         String firstTile = "";
-        if (tileDirection == "horizontal"){
+        if (tileDirection == "r"){
             for(int i = 0; i < playedTiles.size(); i++){
                 LetterTile thisTile = playedTiles.get(i);
                 while(firstTile == ""){
@@ -154,10 +154,11 @@ public class Move {
                         while(board.getPlacedTiles(thisTile.getTileRow() + 1, thisTile.getTileCol()) != null){
                             //sb.append(firstTile);
                             word.add(thisTile);
+                            //System.out.println(word.toString());
                         }
                         //word = sb.toString();
                         //allWords.add(word);
-                        allWords.add(word);
+                        //allWords.add(word);
                     }
                     else{
                         thisTile = playedTiles.get(i-1);

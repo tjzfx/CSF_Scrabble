@@ -26,6 +26,7 @@ public class MainApp {
 
         Boolean firstMove = true;
         Boolean validPlay = true;
+        //Boolean ValidFirstMove = false;
         Boolean gameOver = false;
         Scanner scanner = new Scanner(System.in);
 
@@ -94,7 +95,6 @@ public class MainApp {
                                     String nextLetter = scanner.next();
                                     System.out.println(nextLetter);
                                     if (nextLetter.equals("end")){
-                                        endPlacements = true;
                                         break;
                                     }
                                     else if (direct.equals("r")){
@@ -104,7 +104,7 @@ public class MainApp {
                                         nextTile.setTileRow(firstTile.getTileRow());
                                         nextTile.setTileCol(firstTile.getTileCol() + 1);
                                         playedTiles.add(nextTile);
-                                        tileTray.removeTile(nextTile);
+                                        //tileTray.removeTile(nextTile);
                                         firstTile = nextTile;
                                     }
                                     else if (direct.equals("d")){
@@ -114,7 +114,7 @@ public class MainApp {
                                         nextTile.setTileRow(firstTile.getTileRow() + 1);
                                         nextTile.setTileCol(firstTile.getTileCol());
                                         playedTiles.add(nextTile);
-                                        tileTray.removeTile(nextTile);
+                                        //tileTray.removeTile(nextTile);
                                         firstTile = nextTile;
                                     }
                                 }
@@ -124,11 +124,17 @@ public class MainApp {
                                 System.out.println("Sorry, you don't have that tile.");
                                 break;
                             }
+//                            if(board.getPlacedTiles(7, 7).equals(null)){
+//                                System.out.println("Sorry, your first tile has to hit the middle square.");
+//                                validPlay = false;
+//                                break;
+//                            }
                             firstMove = false;
                             break;
                         }
                         else{
-                            System.out.println("Okay, " + player.getPlayerName() + ", here are your tiles.");
+                            System.out.println();
+                            System.out.println("Your turn, " + player.getPlayerName() + ", here are your tiles.");
                             System.out.println(tileTray.displayTileTray());
                             System.out.println("Okay, " + player.getPlayerName() + ",what tile would you like to start your word with?");
                             String playLetter = scanner.next();
@@ -143,7 +149,6 @@ public class MainApp {
                                 int col = scanner.nextInt();
                                 firstTile.setTileCol(col);
                                 playedTiles.add(firstTile);
-                                tileTray.removeTile(firstTile);
                                 System.out.println("What direction, right (r) or down (d)?");
                                 String direct = scanner.next();
                                 do {
@@ -167,7 +172,6 @@ public class MainApp {
                                             nextTile.setTileCol(firstTile.getTileCol() + 1);
                                         }
                                         playedTiles.add(nextTile);
-                                        tileTray.removeTile(nextTile);
                                         firstTile = nextTile;
                                     }
                                     else if (direct.equals("d")){
@@ -179,11 +183,10 @@ public class MainApp {
                                             nextTile.setTileCol(firstTile.getTileCol());
                                         }
                                         else{
-                                            nextTile.setTileRow(firstTile.getTileRow());
-                                            nextTile.setTileCol(firstTile.getTileCol() + 1);
+                                            nextTile.setTileRow(firstTile.getTileRow() + 1);
+                                            nextTile.setTileCol(firstTile.getTileCol());
                                         }
                                         playedTiles.add(nextTile);
-                                        tileTray.removeTile(nextTile);
                                         firstTile = nextTile;
                                     }
                                 }
@@ -198,16 +201,23 @@ public class MainApp {
             //          // have player select what letter to play and where to start it DONE
                         // have player select next letters (one at a time?) DONE
                         // place those letters on the board DONE
-                        // if they encounter a space that isn't null, place it on col/row + 2
+                        // if they encounter a space that isn't null, place it on col/row + 2 DONE
                         // validate word played, starting from first tile
                         // validate words encountered, starting from first tile, checking left/right
                         // if valid, remove those tiles from player's tile tray
                     }
-                    Move move = new Move(player, playedTiles, board);
-                    for(int j = 0; j < playedTiles.size(); j++){
-                        move.placeTiles(tileTray);
-                    }
-                    System.out.print(board.toString());
+                Move move = new Move(player, playedTiles, board);
+                for(int j = 0; j < playedTiles.size(); j++){
+                    move.placeTiles(tileTray);
+                    //move.findWords();
+                }
+                if(board.getPlacedTiles(7, 7) == null){
+                    System.out.println("Sorry, the first tile of the game has to hit the middle square.  Seriously, everyone knows that.");
+//                    validPlay = false;
+                    break;
+                }
+                move.removeAndReplaceTiles(player.getPlayerTray(), game.getTilePool());
+                System.out.print(board.toString());
             }
         }
     }
