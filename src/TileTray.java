@@ -28,9 +28,8 @@ public class TileTray {
         return newTile;
     }
 
-    public ArrayList<LetterTile> shuffleTiles(ArrayList<LetterTile> tileTray){
+    public void shuffleTiles(){
         Collections.shuffle(tileTray);
-        return tileTray;
     }
 
     public String displayTileTray(){

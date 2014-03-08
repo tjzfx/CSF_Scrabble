@@ -62,7 +62,7 @@ public class MainApp {
 //            LetterTile letterTile = tilePool.tilePool.get(x);
 //            System.out.println(letterTile.toString());
 //        }
-
+        String tileDirec = "";
         while (gameOver==false){
             for (int i = 0; i < numPlayers; i++){
                 player = players.get(i);
@@ -97,8 +97,13 @@ public class MainApp {
                                     if (nextLetter.equals("end")){
                                         break;
                                     }
+                                    else if(nextLetter.equals("shuffle")){
+                                        tileTray.shuffleTiles();
+                                        System.out.println(tileTray.displayTileTray());
+                                    }
                                     else if (direct.equals("r")){
                                         System.out.println("Okay, placing horizontally");
+                                        tileDirec = "horizontal";
                                         LetterTile nextTile = tileTray.getTileFromLetter(nextLetter, tileTray.tileTray);
                                         System.out.println("Playing tile " +  nextTile + " previous tile was" + firstTile);
                                         nextTile.setTileRow(firstTile.getTileRow());
@@ -109,6 +114,7 @@ public class MainApp {
                                     }
                                     else if (direct.equals("d")){
                                         System.out.println("Okay, placing vertically");
+                                        tileDirec = "vertical";
                                         LetterTile nextTile = tileTray.getTileFromLetter(nextLetter, tileTray.tileTray);
                                         System.out.println("Playing tile " +  nextTile.toString());
                                         nextTile.setTileRow(firstTile.getTileRow() + 1);
@@ -124,17 +130,24 @@ public class MainApp {
                                 System.out.println("Sorry, you don't have that tile.");
                                 break;
                             }
-//                            if(board.getPlacedTiles(7, 7).equals(null)){
-//                                System.out.println("Sorry, your first tile has to hit the middle square.");
-//                                validPlay = false;
-//                                break;
-//                            }
+                            Move move = new Move(player, playedTiles, board);
+                            for(int j = 0; j < playedTiles.size(); j++){
+                                move.placeTiles(tileTray);
+                                move.setTileDirection(tileDirec);
+                                if(board.getPlacedTiles(7, 7).equals(null)){
+                                    System.out.println("Sorry, your first tile has to hit the middle square.");
+                                    validPlay = false;
+                                    break;
+                                }
+                                //move.findWords();
+                            }
+
                             firstMove = false;
                             break;
                         }
                         else{
                             System.out.println();
-                            System.out.println("Your turn, " + player.getPlayerName() + ", here are your tiles.");
+                            System.out.println("Your turn, " + player.getPlayerName() + ".  You have " + player.getPlayerScore() + " points.");
                             System.out.println(tileTray.displayTileTray());
                             System.out.println("Okay, " + player.getPlayerName() + ",what tile would you like to start your word with?");
                             String playLetter = scanner.next();
@@ -154,15 +167,18 @@ public class MainApp {
                                 do {
                                     System.out.println("What tile would you like to play next?  Type end when you're finished placing tiles.");
                                     String nextLetter = scanner.next();
-                                    System.out.println(nextLetter);
                                     if (nextLetter.equals("end")){
-                                        endPlacements = true;
                                         break;
+                                    }
+                                    else if(nextLetter.equals("shuffle")){
+                                        tileTray.shuffleTiles();
+                                        System.out.println(tileTray.displayTileTray());
                                     }
                                     else if (direct.equals("r")){
                                         System.out.println("Okay, placing horizontally");
+                                        tileDirec = "horizontal";
                                         LetterTile nextTile = tileTray.getTileFromLetter(nextLetter, tileTray.tileTray);
-                                        System.out.println("Playing tile " +  nextTile + " previous tile was" + firstTile);
+                                        //System.out.println("Playing tile " +  nextTile + " previous tile was" + firstTile);
                                         if(board.getPlacedTiles(firstTile.getTileRow(), firstTile.getTileCol() + 1) != null){
                                             nextTile.setTileRow(firstTile.getTileRow());
                                             nextTile.setTileCol(firstTile.getTileCol() + 2);
@@ -176,6 +192,7 @@ public class MainApp {
                                     }
                                     else if (direct.equals("d")){
                                         System.out.println("Okay, placing vertically");
+                                        tileDirec = "vertical";
                                         LetterTile nextTile = tileTray.getTileFromLetter(nextLetter, tileTray.tileTray);
                                         System.out.println("Playing tile " +  nextTile.toString());
                                         if(board.getPlacedTiles(firstTile.getTileRow() + 1, firstTile.getTileCol()) != null){
@@ -208,10 +225,17 @@ public class MainApp {
                     }
                 Move move = new Move(player, playedTiles, board);
                 for(int j = 0; j < playedTiles.size(); j++){
+                    move.setTileDirection(tileDirec);
                     move.placeTiles(tileTray);
-                    //move.findWords();
+//                    move.findWords();
+//                    int newPoints = move.calculate();
+//                    player.setPlayerScore(player.getPlayerScore() + newPoints);
                 }
-                if(board.getPlacedTiles(7, 7) == null){
+                if(move.checkTileIsland()){
+                    System.out.println("Sorry, tiles must intersect.");
+                    break;
+                }
+                else if(board.getPlacedTiles(7, 7) == null){
                     System.out.println("Sorry, the first tile of the game has to hit the middle square.  Seriously, everyone knows that.");
 //                    validPlay = false;
                     break;

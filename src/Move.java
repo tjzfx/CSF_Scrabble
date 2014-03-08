@@ -6,8 +6,15 @@ public class Move {
     ArrayList<LetterTile> playedTiles = new ArrayList<LetterTile>();
     private boolean validPlay = true;
     Board board;
+
+    public void setTileDirection(String tileDirection) {
+        this.tileDirection = tileDirection;
+    }
+
     private String tileDirection = "";
     ArrayList<LinkedList<LetterTile>> words;
+    ArrayList<String> strWords = new ArrayList<String>();
+
 
     public Move(Player player, ArrayList<LetterTile> playedTiles, Board board){
         this.board = board;
@@ -85,7 +92,21 @@ public class Move {
 
     //Shirley
     public boolean checkTileIsland(){
-        boolean isIsland = false;
+        boolean isIsland = true;
+        for (int x = 0; x < playedTiles.size(); x++){
+            LetterTile thisTile = playedTiles.get(x);
+            int row = thisTile.getTileRow();
+            int col = thisTile.getTileCol();
+            //LetterTile adjacentTile = board.getPlacedTiles(thisTile.getTileRow() + 1, )
+            if(board.getPlacedTiles(row, col-1) != null || board.getPlacedTiles(row, col+1) != (null)){
+                isIsland = false;
+                return isIsland;
+            }
+            else if(board.getPlacedTiles(row-1, col) != null || board.getPlacedTiles(row+1, col) != null){
+                isIsland = false;
+                return isIsland;
+            }
+        }
         return isIsland;
     }
 
@@ -139,44 +160,161 @@ public class Move {
     }
 
     //Shirley
-    public ArrayList<String> findWords(){
-        //StringBuilder sb = new StringBuilder();
-        //ArrayList<LinkedList<LetterTile>> allWords = new ArrayList<LinkedList<LetterTile>>();
-        ArrayList<String> allWords = new ArrayList<String>();
+    public void findWords(){
         LinkedList<LetterTile> word = new LinkedList<LetterTile>();
-        String firstTile = "";
-        if (tileDirection == "r"){
-            for(int i = 0; i < playedTiles.size(); i++){
-                LetterTile thisTile = playedTiles.get(i);
-                while(firstTile == ""){
-                    if(board.getPlacedTiles(thisTile.getTileRow(), thisTile.getTileCol()) == null){
-                        firstTile = thisTile.getLetter();
-                        while(board.getPlacedTiles(thisTile.getTileRow() + 1, thisTile.getTileCol()) != null){
-                            //sb.append(firstTile);
-                            word.add(thisTile);
-                            //System.out.println(word.toString());
-                        }
-                        //word = sb.toString();
-                        //allWords.add(word);
-                        //allWords.add(word);
-                    }
-                    else{
-                        thisTile = playedTiles.get(i-1);
-                    }
+        StringBuilder sb = new StringBuilder();
+
+        if (tileDirection == "vertical"){
+
+            //First find the main, vertical word
+            int col;
+            int smallestRow = 15;
+            int largestRow = -1;
+            LetterTile tile = playedTiles.get(0);
+            col = tile.getTileCol();
+            //Find the first tile placed in the column (smallest row)
+            for(int i =0; i < playedTiles.size(); i++){
+                tile = playedTiles.get(i);
+                int currentRow = tile.getTileRow();
+                if (currentRow < smallestRow){
+                    smallestRow = currentRow;
                 }
             }
-        }
-        else if (tileDirection == "vertical"){
+            //Find the first tile in the column (either the top tile above it or the top tile placed if nothing above it)
+            LetterTile firstTile = board.getPlacedTiles(smallestRow, col);
+            int firstRow = smallestRow;
+
+            while (firstTile != null && firstRow > -1){
+                firstRow = firstRow - 1;
+                firstTile = board.getPlacedTiles(firstRow, col);
+            }
+
+            //Find the last tile in the column (either the last tile below the largest row, or the
+            LetterTile lastTile = board.getPlacedTiles(smallestRow, col);
+            int lastRow = largestRow;
+
+            while (lastTile != null && lastRow < 15){
+                lastRow = firstRow + 1;
+                lastTile = board.getPlacedTiles(lastRow, col);
+            }
+
+            //Build the word and add it to the linked list
+            for (int i = firstRow; i < lastRow + 1; i++ ){
+                tile = board.getPlacedTiles(i, col);
+                sb.append(tile.getLetter());
+                word.addLast(tile);
+            }
+            words.add(word);
+            strWords.add(sb.toString());
+
+            int firstCol;
+            int lastCol;
+            LetterTile startTile = board.getPlacedTiles(smallestRow, col);
+            firstCol = firstTile.getTileCol();
+            firstTile = board.getPlacedTiles(smallestRow, col);
+            lastCol = firstTile.getTileCol();
+            lastTile = board.getPlacedTiles(smallestRow, col);
+            //Check for additional words
+            //Start with the smallestRow (first tile placed)
+
+            for (int i = smallestRow; i < lastRow + 1; i++){
+                //Find the first tile in that row (firstcol)
+                while (firstTile != null && firstCol > -1 ){
+                    firstCol = firstCol - 1;
+                    firstTile = board.getPlacedTiles(i, firstCol);
+                }
+                //Find the last tile in that row (lastcol)
+                while (lastTile != null && lastCol < 15 ){
+                    lastCol = firstCol + 1;
+                    firstTile = board.getPlacedTiles(i, lastCol);
+                }
+
+                //Build the word and add it to the linked list
+                for (int j = firstCol; j < lastCol + 1; i++ ){
+                    tile = board.getPlacedTiles(i, j);
+                    word.addLast(tile);
+                }
+                words.add(word);
+                strWords.add(sb.toString());
+            }
 
         }
-        // check direc of tiles
-        // sort array to be in smallest (row/col) to largest row/col order
-        // starting at smallest, check opposite direction, find words, rinse, repeat
-        // get first letter tile in arraylist
-        // iterate up/left depending on direc until a null row, col is found
-        // starting at that tile (the one before null), iterate down/right until a null row,col is found creating a string
 
-        return allWords;
+        if (tileDirection == "horizontal"){
+
+            //First find the main, horizontal word
+            int smallestCol = 0;
+            int largestCol = 14;
+            LetterTile tile = playedTiles.get(0);
+            int row = tile.getTileRow();
+            //Find the first tile placed in the row (smallest col)
+            for(int i =0; i < playedTiles.size(); i++){
+                tile = playedTiles.get(i);
+                int currentCol = tile.getTileCol();
+                if (currentCol < smallestCol){
+                    smallestCol = currentCol;
+                }
+            }
+            //Find the first tile in the row (either the last tile to the left or the first tile placed if nothing to the left)
+            LetterTile firstTile = board.getPlacedTiles(row, smallestCol);
+            int firstCol = smallestCol;
+
+            while (firstTile != null && firstCol > -1){
+                firstCol = firstCol - 1;
+                firstTile = board.getPlacedTiles(row, firstCol);
+            }
+
+            //Find the last tile in the row (either the first tile to the right or the last tile placed if nothing to the right)
+            LetterTile lastTile = board.getPlacedTiles(row, smallestCol);
+            int lastCol = largestCol;
+
+            while (lastTile != null && lastCol < 15){
+                lastCol = lastCol + 1;
+                lastTile = board.getPlacedTiles(row, lastCol);
+            }
+
+            //Build the word and add it to the linked list
+            for (int i = firstCol; i > lastCol + 1; i++ ){
+                tile = board.getPlacedTiles(row, i);
+                sb.append(tile.getLetter());
+                word.addLast(tile);
+            }
+            words.add(word);
+            strWords.add(sb.toString());
+
+            int firstRow;
+            int lastRow;
+            LetterTile startTile = board.getPlacedTiles(row, smallestCol);
+            firstRow = firstTile.getTileRow();
+            firstTile = board.getPlacedTiles(row, smallestCol);
+            lastRow = firstTile.getTileRow();
+            lastTile = board.getPlacedTiles(row, smallestCol);
+            //Check for additional words
+            //Start with the smallestCol (first tile placed)
+
+            for (int i = smallestCol; i < lastCol + 1; i++){
+                //Find the first tile in that Col (firstrow)
+                while (firstTile != null && firstRow > -1 ){
+                    firstRow = firstRow - 1;
+                    firstTile = board.getPlacedTiles(firstRow, i);
+                }
+                //Find the last tile in that Col (lastrow)
+                while (lastTile != null && lastRow < 15 ){
+                    lastRow = firstRow + 1;
+                    firstTile = board.getPlacedTiles(lastRow, i);
+                }
+
+                //Build the word and add it to the linked list
+                for (int j = firstRow; j < lastRow + 1; i++ ){
+                    tile = board.getPlacedTiles(j, i);
+                    word.addLast(tile);
+                }
+                words.add(word);
+                strWords.add(sb.toString());
+            }
+
+        }
+
     }
 
     //Rachel
@@ -191,7 +329,7 @@ public class Move {
         Boolean committed;
         int wordMultiplier;
 
-        for (int i = 0; i < words.size(); i++){
+        for (int i = 0; i < strWords.size(); i++){
             LinkedList<LetterTile> word = words.get(i);
             wordMultiplier = 0;
             for(int j = 0; j < word.size(); j++){
